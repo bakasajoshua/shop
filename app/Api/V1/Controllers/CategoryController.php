@@ -8,7 +8,7 @@ use App\Category;
 class CategoryController extends Controller {
 
     public function all(){
-        return response()->all([
+        return response()->json([
             'categories' => Category::get(),
             'status' => 200
         ]);
