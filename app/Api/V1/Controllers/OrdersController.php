@@ -39,6 +39,7 @@ class OrdersController extends Controller
             $detail->price = $cart->price;
             $detail->save();
             $cart->delete();
+            $product = $cart->product;
             $product->quantity = $product->quantity - $cart->quantity;
             $product->save();
             $price += $cart->price;
