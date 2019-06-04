@@ -8,7 +8,7 @@ use App\Product;
 
 class CartController extends Controller {
     public function index(){
-        return response()->json(auth('api')->user()->cart);
+        return response()->json(auth('api')->user()->cart->fresh('product'));
     }
 
     public function add_to_cart(CartRequest $request) {
@@ -43,7 +43,7 @@ class CartController extends Controller {
         }
         $cart->save();
         
-        return response()->json(['cart' => $cart, 'code' => 201]);
+        return response()->json(['cart' => $cart->fresh('product'), 'code' => 201]);
     }
 }
 
