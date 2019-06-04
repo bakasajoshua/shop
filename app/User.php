@@ -94,4 +94,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Cart');
     }
 
+    public function delivery(){
+        return $this->hasMany('App\Delivery');
+    }
+
 }

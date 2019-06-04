@@ -24,9 +24,11 @@ $api->version('v1', function (Router $api) {
         $api->get('categories', 'CategoryController@all');
 
         $api->group(['middleware' => 'jwt.auth'], function(Router $api) {
-            $api->get('protected', 'RandomController@protected_route');
             $api->get('cart', 'CartController@index');
             $api->post('cart', 'CartController@add_to_cart');
+            $api->post('deliveryaddress', 'DeliveryController@create');
+            $api->get('deliveryaddress', 'DeliveryController@show');
+            $api->get('protected', 'RandomController@protected_route');
             $api->group(['middleware' => 'jwt.refresh'], function(Router $api) {
                 $api->get('refresh', 'RandomController@refresh_route');
             });
