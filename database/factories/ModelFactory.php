@@ -44,6 +44,6 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'price' => rand(100, 1000),
         'quantity' => rand(1, 10),
         'category_id' => rand(1, 6),
-        'image' => 'img/items/'.$images[array_rand($images, 1)],
+        'image' => env('APP_URL').'img/items/'.$images[array_rand($images, 1)],
     ];
 });
