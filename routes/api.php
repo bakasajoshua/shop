@@ -29,6 +29,7 @@ $api->version('v1', function (Router $api) {
             $api->post('deliveryaddress', 'DeliveryController@create');
             $api->get('deliveryaddress', 'DeliveryController@show');
             $api->post('order', 'OrdersController@create');
+            $api->get('order', 'OrdersController@show');
             $api->get('protected', 'RandomController@protected_route');
             $api->group(['middleware' => 'jwt.refresh'], function(Router $api) {
                 $api->get('refresh', 'RandomController@refresh_route');
