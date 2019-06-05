@@ -56,7 +56,7 @@ class OrdersController extends Controller
     }
 
     public function payfororder($order) {
-        $order = Order::findOrFail($order)->fresh('details')->transform(function ($detail, $key) {
+        $order = Order::findOrFail($order)->load('details')->transform(function ($detail, $key) {
             $detail->total = $detail->price * $detail->quantity;
             return $detail;
         });
