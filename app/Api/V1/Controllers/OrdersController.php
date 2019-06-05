@@ -1,6 +1,7 @@
 <?php
 namespace App\Api\V1\Controllers;
 
+use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use App\Api\V1\Requests\OrderRequest;
 use App\Cart;
@@ -52,6 +53,28 @@ class OrdersController extends Controller
         return response()->json([
             'orders' => auth('api')->user()->orders->fresh($with = ['details', 'details.product']),
         ]);
+    }
+
+    public function payfororder($order) {
+        $order = Order::findOrFail($order)->fresh('details')->each(function ($detail, $key) {
+            $detail->total = ($detail->quantity * $detail->price);
+            return $detail->total;
+        });
+        return response()->json($order);
+        // $payment = $this->make_payment($order->)
+    }
+
+    private function make_payment($amount) {
+        $client = new Client(['base_uri' => 'http://197.248.9.51/mpesa/api/']);
+
+		$response = $client->request('post', 'makeApiPayment', [
+			'http_errors' => false,
+			'json' => [
+				'phone' => auth('api')->user()->telephone,
+				'amount' => $amount,
+			],
+        ]);
+        return json_decode($response->getBody());
     }
 }
 
