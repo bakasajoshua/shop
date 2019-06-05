@@ -13,7 +13,9 @@ class AlterOrdersAddPaymentID extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('orders', function(Blueprint $table){
+            $table->bigInteger('payment_id')->after('delivery_id')->nullable();
+        });
     }
 
     /**

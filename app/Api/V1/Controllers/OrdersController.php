@@ -61,9 +61,15 @@ class OrdersController extends Controller
             $detail->total = $detail->price * $detail->quantity;
             return $detail;
         });
-        return response()->json($details->sum('total'));
-        // $payment = $this->make_payment();
-    }
+        $payment = $this->make_payment($details->sum('total'));
+        if (!empty($payment)){
+            $order->payment_id = $payment->id;
+            if (isset($payment->merchant_request_id))
+                $order->payment_status = 1;
+            $order->save();
+        }
+        return response()->json(['payments']); 
+    }   
 
     private function make_payment($amount) {
         $client = new Client(['base_uri' => 'http://197.248.9.51/mpesa/api/']);

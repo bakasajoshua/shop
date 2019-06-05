@@ -171,8 +171,8 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        Milon\Barcode\BarcodeServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Milon\Barcode\BarcodeServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
         // niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
@@ -242,9 +242,9 @@ return [
          */
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
-        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // 'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        // 'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         // 'DOMPDF' => Barryvdh\DomPDF\Facade::class,
         // 'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
     ],
