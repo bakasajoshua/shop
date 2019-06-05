@@ -68,7 +68,7 @@ class OrdersController extends Controller
                 $order->payment_status = 1;
             $order->save();
         }
-        return response()->json(['payments']); 
+        return response()->json(['payments' => $payment, 'code' => 201]); 
     }   
 
     private function make_payment($amount) {
