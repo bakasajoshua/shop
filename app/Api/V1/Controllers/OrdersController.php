@@ -56,12 +56,13 @@ class OrdersController extends Controller
     }
 
     public function payfororder($order) {
-        $datails = Order::findOrFail($order)->load('details')->details->transform(function ($detail, $key) {
+        $order = Order::findOrFail($order);
+        $details = $order->load('details')->details->transform(function ($detail, $key) {
             $detail->total = $detail->price * $detail->quantity;
             return $detail;
         });
-        return response()->json($datails);
-        // $payment = $this->make_payment($order->)
+        return response()->json($datails->sum('total'));
+        // $payment = $this->make_payment();
     }
 
     private function make_payment($amount) {
