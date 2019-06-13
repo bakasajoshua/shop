@@ -9,7 +9,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'delivery' => 'required|integer',
-            'cart' => 'required'
+            // 'cart' => 'required'
         ];
     }
 
