@@ -13,7 +13,7 @@ use App\Payment;
 class OrdersController extends Controller
 {    
     public function create(OrderRequest $request) {
-        $carts = auth('api')->user()->cart->whereIn('id', json_decode($request->input('cart')))->fresh('product');
+        $carts = auth('api')->user()->cart->fresh('product');
         if ($carts->isEmpty())
             return response()->json([
                 'message' => 'Cart data could not be found',
